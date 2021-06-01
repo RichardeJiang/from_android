@@ -2,6 +2,7 @@ import 'package:from_android/exhibition_bottom_sheet.dart';
 import 'package:from_android/sliding_cards.dart';
 import 'package:from_android/tabs.dart';
 import 'package:flutter/material.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 
 import 'exhibition_bottom_sheet.dart';
 

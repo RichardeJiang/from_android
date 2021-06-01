@@ -120,6 +120,15 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle style = ElevatedButton.styleFrom(
+      textStyle: const TextStyle(
+        color: Colors.white,
+      ),
+      primary: Color(0xFF162A49),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(32),
+      ),
+    );
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -142,15 +151,11 @@ class CardContent extends StatelessWidget {
             children: <Widget>[
               Transform.translate(
                 offset: Offset(48 * offset, 0),
-                child: RaisedButton(
-                  color: Color(0xFF162A49),
+                child: ElevatedButton(
+                  style: style,
                   child: Transform.translate(
-                    offset: Offset(24 * offset, 0),
+                    offset: Offset(6 * offset, 0),
                     child: Text('Reserve'),
-                  ),
-                  textColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(32),
                   ),
                   onPressed: () {},
                 ),
