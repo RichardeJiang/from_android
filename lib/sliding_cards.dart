@@ -46,7 +46,7 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             offset: pageOffset - 1,
           ),
           SlidingCard(
-            name: 'Preparing the initial design aspects for 31',
+            name: 'Preparing the initial design aspects for 31，中文混合',
             date: '4.30-31',
             assetName: 'efe-kurnaz.jpg',
             offset: pageOffset - 1,
@@ -162,7 +162,7 @@ class CardContent extends StatelessWidget {
               ),
               Spacer(),
               Transform.translate(
-                offset: Offset(32 * offset, 0),
+                offset: Offset(16 * offset, 0),
                 child: Text(
                   '0.00 \$',
                   style: TextStyle(

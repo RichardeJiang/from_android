@@ -1,4 +1,5 @@
 import 'package:from_android/home_page.dart';
+import 'package:from_android/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MyTestApp());
@@ -9,7 +10,8 @@ class MyTestApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'SF Pro Display'),
       title: 'Buy Tickets',
-      home: HomePage(),
+      //home: HomePage(),
+      home: StaggeredView(),
     );
   }
 }
