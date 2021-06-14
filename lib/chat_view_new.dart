@@ -6,48 +6,69 @@ import 'package:flutter/services.dart';
 import 'dart:async';
 
 class Chat extends StatelessWidget {
+
+  Future<Map> loadJson() async {
+    Map imageTexts = await rootBundle
+        .loadStructuredData('assets/text/home_letter.json', (String s) async {
+      return json.decode(s);
+    });
+
+    return Future.value(imageTexts);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '致孩子们：',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
-      body: ChatScreen(),
+    return FutureBuilder(
+      future: loadJson(),
+      builder: (context, AsyncSnapshot<Map> snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(
+                '致孩子们：',
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              centerTitle: true,
+            ),
+            body: ChatScreen(snapshot.data!),
+          );
+        } else {
+          return CircularProgressIndicator();
+        }
+      }
     );
   }
 }
 
 class ChatScreen extends StatelessWidget {
+  const ChatScreen(this.inpuMap);
+  final Map inpuMap;
+
   @override
   Widget build(BuildContext context) {
-    Map textInputMap = {
-      0 : "text 1 text 1 text 1 text 1 text 1 text 1",
-      1 : "text 1 text 1 text 1 text 1 text 1 text 1",
-      2 : "text 2 text 2 text 2 text 2 text 2 text 2",
-      3 : "text 3 text 3 text 3 text 3 text 3 text 3",
-      4 : "text 4 text 4 text 4 text 4 text 4 text 4"
-    };
-    return Scaffold(
-      body: buildListMessage(textInputMap),
-    );
+    return buildListMessage(this.inpuMap);
   }
 
   Widget buildListMessage(Map textInputMap) {
     return ListView.builder(
       padding: EdgeInsets.all(10.0),
-      itemBuilder: (context, index) =>
-          buildItem(index, textInputMap[index]),
+      itemBuilder: (context, index) {
+        final name = this.inpuMap.keys.elementAt(index);
+        return buildItem(index,
+            name,
+            this.inpuMap[name]["message"],
+            this.inpuMap[name]["avatar"]);
+      },
       itemCount: textInputMap.length,
       reverse: true,
     );
   }
 
-  Widget buildItem(int index, String text) {
-    final Image teacherAvatar = Image.asset('assets/efe-kurnaz.jpg');
+  Widget buildItem(
+      int index,
+      String teacherName,
+      String teacherMessage,
+      String teacherAvatar) {
     return Container(
       child: Column(
         children: <Widget>[
@@ -60,24 +81,19 @@ class ChatScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: new BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/efe-kurnaz.jpg'),
+                      image: AssetImage('assets/$teacherAvatar'),
                       fit: BoxFit.fill
                   ),
                   borderRadius: BorderRadius.all(
                     Radius.circular(18.0),
                   ),
                 ),
-
-                // borderRadius: BorderRadius.all(
-                //   Radius.circular(18.0),
-                // ),
-                // clipBehavior: Clip.hardEdge,
               ),
 
               // Text message
               Container(
                 child: Text(
-                  text,
+                  teacherMessage,
                   style: TextStyle(color: Colors.white),
                 ),
                 padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),

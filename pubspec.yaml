@@ -57,6 +57,7 @@ flutter:
     - assets/rodion-kutsaev.jpeg
     - assets/steve-johnson.jpeg
     - assets/config/staggered_text.json
+    - assets/text/home_letter.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
