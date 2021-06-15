@@ -57,7 +57,8 @@ class ChatScreen extends StatelessWidget {
         return buildItem(index,
             name,
             this.inpuMap[name]["message"],
-            this.inpuMap[name]["avatar"]);
+            this.inpuMap[name]["avatar"],
+            context);
       },
       itemCount: textInputMap.length,
       reverse: true,
@@ -68,11 +69,13 @@ class ChatScreen extends StatelessWidget {
       int index,
       String teacherName,
       String teacherMessage,
-      String teacherAvatar) {
+      String teacherAvatar,
+      BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // Avatar
               Container(
@@ -88,21 +91,40 @@ class ChatScreen extends StatelessWidget {
                     Radius.circular(18.0),
                   ),
                 ),
+                //padding: EdgeInsets.only(top: 50),
+                margin: EdgeInsets.only(top: 5.0),
               ),
 
               // Text message
-              Container(
-                child: Text(
-                  teacherMessage,
-                  style: TextStyle(color: Colors.white),
-                ),
-                padding: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
-                width: 200.0,
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(8.0)),
-                margin: EdgeInsets.only(left: 10.0),
-              )
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  // Name
+                  Container(
+                    child: Text(
+                      teacherName,
+                      style: TextStyle(color: Colors.grey, fontSize: 10.0, fontStyle: FontStyle.italic),
+                    ),
+                    padding: EdgeInsets.only(left: 10.0),
+                  ),
+
+                  SizedBox(height: 2),
+
+                  // Letter
+                  Container(
+                    child: Text(
+                      teacherMessage,
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    padding: EdgeInsets.fromLTRB(15.0, 6.0, 15.0, 10.0),
+                    width: MediaQuery.of(context).size.width * 0.55,
+                    decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8.0)),
+                    margin: EdgeInsets.only(left: 10.0),
+                  ),
+                ],
+              ),
             ],
           ),
 
