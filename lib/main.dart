@@ -2,7 +2,7 @@ import 'package:from_android/home_page.dart';
 import 'package:from_android/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 
-import 'chat_view_new.dart';
+import 'chat_view.dart';
 
 void main() => runApp(new MyTestApp());
 
