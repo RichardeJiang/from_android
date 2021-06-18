@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'dart:math' as math;
 
+import 'package:from_android/staggered_grid_view.dart';
+
 class SlidingCardsView extends StatefulWidget {
   @override
   _SlidingCardsViewState createState() => _SlidingCardsViewState();
@@ -157,7 +159,13 @@ class CardContent extends StatelessWidget {
                     offset: Offset(6 * offset, 0),
                     child: Text('Reserve'),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Go inside the photos or home letters
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => StaggeredView())
+                    );
+                  },
                 ),
               ),
               Spacer(),
