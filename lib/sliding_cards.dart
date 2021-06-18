@@ -4,6 +4,8 @@ import 'dart:math' as math;
 
 import 'package:from_android/staggered_grid_view.dart';
 
+import 'chat_view.dart';
+
 class SlidingCardsView extends StatefulWidget {
   @override
   _SlidingCardsViewState createState() => _SlidingCardsViewState();
@@ -52,6 +54,12 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             date: '4.30-31',
             assetName: 'efe-kurnaz.jpg',
             offset: pageOffset - 1,
+          ),
+          SlidingCard(
+            name: 'X: 致孩子们',
+            date: '4.20-30',
+            assetName: 'steve-johnson.jpeg',
+            offset: pageOffset - 2,
           ),
         ],
       ),
@@ -164,14 +172,21 @@ class CardContent extends StatelessWidget {
                   ),
                   onPressed: () {
                     // Go inside the photos or home letters
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StaggeredView(
-                              imageListFileName: imageListFileName,
-                            )
-                        )
-                    );
+                    if (!this.name.startsWith("X")) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StaggeredView(
+                                imageListFileName: imageListFileName,
+                              )
+                          )
+                      );
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => Chat()));
+                    }
                   },
                 ),
               ),
