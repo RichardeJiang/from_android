@@ -56,7 +56,9 @@ flutter:
     - assets/efe-kurnaz.jpg
     - assets/rodion-kutsaev.jpeg
     - assets/steve-johnson.jpeg
-    - assets/config/staggered_text.json
+    - assets/config/origin.json
+    - assets/config/fly.json
+    - assets/config/life.json
     - assets/text/home_letter.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

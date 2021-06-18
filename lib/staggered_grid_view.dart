@@ -5,10 +5,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class StaggeredView extends StatelessWidget {
+  final String imageListFileName;
+
+  StaggeredView({Key? key, required this.imageListFileName}) : super(key: key);
 
   Future<Map> loadJson() async {
     Map imageTexts = await rootBundle
-        .loadStructuredData('assets/config/staggered_text.json', (String s) async {
+        .loadStructuredData('assets/config/$imageListFileName', (String s) async {
       return json.decode(s);
     });
 

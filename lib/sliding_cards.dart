@@ -131,6 +131,9 @@ class CardContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
       ),
     );
+    final String imageListFileName = this.name.startsWith("S")
+        ? "origin.json" : this.name.startsWith("D")
+          ? "fly.json" : "life.json";
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -163,7 +166,11 @@ class CardContent extends StatelessWidget {
                     // Go inside the photos or home letters
                     Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => StaggeredView())
+                        MaterialPageRoute(
+                            builder: (context) => StaggeredView(
+                              imageListFileName: imageListFileName,
+                            )
+                        )
                     );
                   },
                 ),
