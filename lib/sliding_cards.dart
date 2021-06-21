@@ -33,7 +33,7 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.55,
+      height: MediaQuery.of(context).size.height * 0.65,
       child: PageView(
         controller: pageController,
         children: <Widget>[
@@ -53,13 +53,13 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
             name: 'Preparing the initial design aspects for 31，中文混合',
             date: '4.30-31',
             assetName: 'efe-kurnaz.jpg',
-            offset: pageOffset - 1,
+            offset: pageOffset - 2,
           ),
           SlidingCard(
             name: 'X: 致孩子们',
             date: '4.20-30',
             assetName: 'steve-johnson.jpeg',
-            offset: pageOffset - 2,
+            offset: pageOffset - 3,
           ),
         ],
       ),
@@ -96,7 +96,7 @@ class SlidingCard extends StatelessWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
               child: Image.asset(
                 'assets/$assetName',
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.4,
                 alignment: Alignment(-offset.abs(), 0),
                 fit: BoxFit.none,
               ),

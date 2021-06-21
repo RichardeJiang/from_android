@@ -62,6 +62,7 @@ class ChatScreen extends StatelessWidget {
       },
       itemCount: textInputMap.length,
       reverse: true,
+      physics: BouncingScrollPhysics(),
     );
   }
 
@@ -108,27 +109,31 @@ class ChatScreen extends StatelessWidget {
                     padding: EdgeInsets.only(left: 10.0),
                   ),
 
-                  SizedBox(height: 2),
+                  SizedBox(height: 1),
 
                   // Letter
-                  Container(
-                    child: Text(
-                      teacherMessage,
-                      style: TextStyle(color: Colors.white),
+                  Padding(
+                    padding: EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 5.0),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.6,
+                      child: Card(
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Text(
+                            teacherMessage,
+                          ),
+                        ),
+                      ),
                     ),
-                    padding: EdgeInsets.fromLTRB(15.0, 6.0, 15.0, 10.0),
-                    width: MediaQuery.of(context).size.width * 0.55,
-                    decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(8.0)),
-                    margin: EdgeInsets.only(left: 10.0),
                   ),
                 ],
               ),
             ],
           ),
 
-          SizedBox(height: 10),
+          SizedBox(height: 7),
         ],
       ),
     );
