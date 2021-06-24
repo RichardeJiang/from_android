@@ -203,7 +203,7 @@ class ExpandedEventItem extends StatelessWidget {
     return Column(
       children: <Widget>[
         Text(title, style: TextStyle(fontSize: 16)),
-        SizedBox(height: 8),
+        SizedBox(height: 9),
         Row(
           children: <Widget>[
             Text(

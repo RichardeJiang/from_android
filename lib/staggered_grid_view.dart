@@ -43,6 +43,8 @@ class StaggeredView extends StatelessWidget {
                       i,
                       snapshot.data![i.toString()]["annotation"])
               ],
+              physics: BouncingScrollPhysics(),
+              shrinkWrap: true,
             ),
           );
         } else {
