@@ -2,13 +2,14 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double minHeight = 120;
-const double iconStartSize = 44;
-const double iconEndSize = 120;
-const double iconStartMarginTop = 36;
-const double iconEndMarginTop = 80;
-const double iconsVerticalSpacing = 24;
+const double iconStartSize = 30;
+const double iconEndSize = 90;
+const double iconStartMarginTop = 20;
+const double iconEndMarginTop = 35;
+const double iconsVerticalSpacing = 5;
 const double iconsHorizontalSpacing = 16;
 
 class ExhibitionBottomSheet extends StatefulWidget {
@@ -38,7 +39,7 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
   double iconTopMargin(int index) =>
       lerp(iconStartMarginTop,
           iconEndMarginTop + index * (iconsVerticalSpacing + iconEndSize)) +
-      headerTopMargin;
+      headerTopMargin + 20;
 
   double iconLeftMargin(int index) =>
       lerp(index * (iconsHorizontalSpacing + iconStartSize), 0);
@@ -83,13 +84,14 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
               ),
               child: Stack(
                 children: <Widget>[
-                  MenuButton(),
+                  //MenuButton(),
                   SheetHeader(
                     fontSize: headerFontSize,
                     topMargin: headerTopMargin,
                   ),
-                  for (Event event in events) _buildFullItem(event),
-                  for (Event event in events) _buildIcon(event),
+                  // for (Event event in events) _buildFullItem(event),
+                  // for (Event event in events) _buildIcon(event),
+                  for (Event event in events) _buildMailSender(event)
                 ],
               ),
             ),
@@ -131,6 +133,87 @@ class _ExhibitionBottomSheetState extends State<ExhibitionBottomSheet>
       title: event.title,
       date: event.date,
     );
+  }
+
+  Widget _buildMailSender(Event event) {
+    int index = events.indexOf(event);
+    final bool shouldShowText = _controller.value > 0.3;
+    final double textboxOpacity = (_controller.value - 0.3) / 0.7;
+    final double smallIconOpacity = 1 - _controller.value / 0.3;
+    if (index == 0) {
+      // Mail sender
+      return Positioned(
+          top: iconTopMargin(index),
+          left: iconLeftMargin(index),
+          child: shouldShowText
+              ?
+          Opacity(
+                opacity: textboxOpacity,
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: TextField(
+                    controller: TextEditingController(text: 'The subject'),
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Subject',
+                    ),
+                  ),
+              ))
+              :
+              Opacity(
+                      opacity: smallIconOpacity,
+                      child: Icon(
+                        FontAwesomeIcons.envelope,
+                        color: Colors.white,
+                        size: iconSize,
+                      )
+                  )
+
+      );
+    } else if (index == 1) {
+      // Mail content
+      return Positioned(
+          top: iconTopMargin(index),
+          left: iconLeftMargin(index),
+          child:
+          shouldShowText
+              ? Opacity(
+                  opacity: textboxOpacity,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: TextField(
+                          controller: TextEditingController(text: 'The body'),
+                          maxLines: null,
+                          expands: true,
+                          textAlignVertical: TextAlignVertical.top,
+                          decoration: InputDecoration(
+                              labelText: 'Body', border: OutlineInputBorder()),
+                        ),
+                  )
+              )
+              :
+          Container()
+      );
+    } else {
+      // Submit button
+      return Positioned(
+          top: iconTopMargin(index) + MediaQuery.of(context).size.height * 0.2,
+          left: iconLeftMargin(index),
+          child:
+          shouldShowText
+            ? Opacity(
+                opacity: textboxOpacity,
+                child: Icon(
+                  Icons.send,
+                  color: Colors.white,
+                  size: iconStartSize,
+                )
+              )
+              :
+          Container()
+      );
+    }
   }
 
   void _toggle() {
@@ -267,7 +350,7 @@ class SheetHeader extends StatelessWidget {
     return Positioned(
       top: topMargin,
       child: Text(
-        'Booked Exhibition',
+        '家书',
         style: TextStyle(
           color: Colors.white,
           fontSize: fontSize,
@@ -282,10 +365,12 @@ class MenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 0,
-      bottom: 24,
+      right: 5,
+      bottom: 30,
       child: Icon(
-        Icons.menu,
+        //Icons.menu,
+        //IconData(62498),
+        FontAwesomeIcons.envelope,
         color: Colors.white,
         size: 28,
       ),

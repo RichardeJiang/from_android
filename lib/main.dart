@@ -13,8 +13,6 @@ class MyTestApp extends StatelessWidget {
       theme: ThemeData(fontFamily: 'SF Pro Display'),
       title: 'Buy Tickets',
       home: HomePage(),
-      //home: StaggeredView(),
-      //home: Chat(),
     );
   }
 }
