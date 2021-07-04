@@ -1,5 +1,6 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:from_android/exhibition_bottom_sheet.dart';
+import 'package:from_android/mail_view.dart';
 import 'package:from_android/scrollable_exhibition_bottom_sheet.dart';
 import 'package:from_android/sliding_cards.dart';
 import 'package:from_android/tabs.dart';
@@ -40,7 +41,7 @@ class HomePage extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => Chat()));
+                        builder: (context) => Mail()));
               },
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
