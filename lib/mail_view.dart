@@ -25,20 +25,19 @@ class Mail extends StatelessWidget {
             return Scaffold(
               appBar: AppBar(
                 title: Text(
-                  '致孩子们：',
+                  '家书：',
                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 centerTitle: true,
               ),
-              body: Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Column(
-                    mainAxisSize: MainAxisSize.max,
+              body: Column(
+                    //mainAxisSize: MainAxisSize.max,
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    //crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(8.0),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        margin: EdgeInsets.all(20),
                         child: TextField(
                           controller: TextEditingController(text: 'The subject'),
                           decoration: InputDecoration(
@@ -47,19 +46,20 @@ class Mail extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: TextField(
-                            controller: TextEditingController(text: 'The body'),
-                            maxLines: null,
-                            expands: true,
-                            textAlignVertical: TextAlignVertical.top,
-                            decoration: InputDecoration(
-                                labelText: 'Body', border: OutlineInputBorder()),
-                          ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.7,
+                        height: MediaQuery.of(context).size.height * 0.3,
+                        margin: EdgeInsets.all(20),
+                        child: TextField(
+                          controller: TextEditingController(text: 'The body'),
+                          maxLines: null,
+                          expands: true,
+                          textAlignVertical: TextAlignVertical.top,
+                          decoration: InputDecoration(
+                              labelText: 'Body', border: OutlineInputBorder()),
                         ),
                       ),
+
                       Icon(
                         Icons.send,
                         color: Colors.black,
@@ -67,8 +67,7 @@ class Mail extends StatelessWidget {
                       )
                     ]
                 )
-              )
-            );
+              );
           } else {
             return CircularProgressIndicator();
           }

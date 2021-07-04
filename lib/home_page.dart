@@ -5,9 +5,6 @@ import 'package:from_android/scrollable_exhibition_bottom_sheet.dart';
 import 'package:from_android/sliding_cards.dart';
 import 'package:from_android/tabs.dart';
 import 'package:flutter/material.dart';
-import 'package:timeline_tile/timeline_tile.dart';
-
-import 'chat_view.dart';
 import 'exhibition_bottom_sheet.dart';
 
 class HomePage extends StatelessWidget {
