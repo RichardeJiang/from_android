@@ -8,24 +8,6 @@ final CollectionReference _mainCollection = _firestore.collection('Messages');
 class Database {
   static String? userUid;
 
-  static Future<void> addItem({
-    required String title,
-    required String description,
-  }) async {
-    DocumentReference documentReferencer =
-    _mainCollection.doc(userUid).collection('items').doc();
-
-    Map<String, dynamic> data = <String, dynamic>{
-      "title": title,
-      "description": description,
-    };
-
-    await documentReferencer
-        .set(data)
-        .whenComplete(() => print("Note item added to the database"))
-        .catchError((e) => print(e));
-  }
-
   static Future<void> addNewMail({
     required String mailSender,
     required String mailContent
@@ -58,13 +40,6 @@ class Database {
         .update(data)
         .whenComplete(() => print("Note item updated in the database"))
         .catchError((e) => print(e));
-  }
-
-  static Stream<QuerySnapshot> readItems() {
-    CollectionReference notesItemCollection =
-    _mainCollection.doc(userUid).collection('items');
-
-    return notesItemCollection.snapshots();
   }
 
   static Stream<QuerySnapshot> readAllMails() {
