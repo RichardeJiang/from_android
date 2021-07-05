@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:from_android/database.dart';
 
 class Mail extends StatefulWidget {
   Mail();
@@ -55,10 +56,17 @@ class _MailState extends State<Mail> {
                       labelText: 'Body', border: OutlineInputBorder()),
                 ),
               ),
-              Icon(
-                Icons.send,
-                color: Colors.black,
-                size: 30,
+              IconButton(
+                onPressed: () async {
+                  await Database.addNewMail(
+                    mailSender: mailSenderController.text,
+                    mailContent: mailContentController.text);
+                },
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.black,
+                  size: 30,
+                )
               )
             ]
         )

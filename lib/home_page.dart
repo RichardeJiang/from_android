@@ -7,7 +7,20 @@ import 'package:from_android/tabs.dart';
 import 'package:flutter/material.dart';
 import 'exhibition_bottom_sheet.dart';
 
-class HomePage extends StatelessWidget {
+import 'package:firebase_core/firebase_core.dart';
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Future<FirebaseApp> _initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+
+    return firebaseApp;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,43 +42,57 @@ class HomePage extends StatelessWidget {
           ),
           //ExhibitionBottomSheet(), //use this or ScrollableExhibitionSheet
           Positioned(
-            height: 90,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Mail()));
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 32),
-                decoration: const BoxDecoration(
-                  color: Color(0xFF162A49),
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
-                ),
-                child: Row(
-                  children: [
-                    Text(
-                      '家书',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
+              height: 90,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Mail()));
+                },
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 32),
+                  decoration: const BoxDecoration(
+                    color: Color(0xFF162A49),
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(32)),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        '家书',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 20),
-                    Spacer(),
-                    Icon(
-                      FontAwesomeIcons.envelope,
-                      color: Colors.white,
-                      size: 28,
-                    )
-                  ],
+                      SizedBox(width: 20),
+                      Spacer(),
+                      FutureBuilder(
+                        future: _initializeFirebase(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            return Text("ERROR CONNECTING TO FIREBASE");
+                          } else if (snapshot.connectionState
+                              == ConnectionState.done) {
+                            return Icon(
+                              FontAwesomeIcons.envelope,
+                              color: Colors.white,
+                              size: 28,
+                            );
+                          } else {
+                            return CircularProgressIndicator(
+                                color: Colors.white
+                            );
+                          }
+                        }
+                      ),
+                    ],
+                  ),
                 ),
-              ),
               )
           )
         ],

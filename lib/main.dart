@@ -1,12 +1,11 @@
 import 'package:from_android/home_page.dart';
-import 'package:from_android/staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 
 import 'chat_view.dart';
 
-void main() => runApp(new MyTestApp());
+void main() => runApp(new MainApp());
 
-class MyTestApp extends StatelessWidget {
+class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
