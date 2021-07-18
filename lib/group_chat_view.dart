@@ -48,7 +48,9 @@ class ChatScreen extends StatelessWidget {
               return buildItem(name, mail, "", context);
             }).toList(),
             padding: EdgeInsets.all(10.0),
-            physics: BouncingScrollPhysics(),
+            physics: BouncingScrollPhysics(
+                parent: AlwaysScrollableScrollPhysics()
+            ),
           );
         }
         );

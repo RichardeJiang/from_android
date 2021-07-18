@@ -59,6 +59,7 @@ class _MailState extends State<Mail> {
                   await Database.addNewMail(
                     mailSender: mailSenderController.text,
                     mailContent: mailContentController.text);
+                  Navigator.pop(context);
                 },
                 icon: Icon(
                   Icons.send,

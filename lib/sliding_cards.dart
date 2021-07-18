@@ -39,26 +39,26 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
         controller: pageController,
         children: <Widget>[
           SlidingCard(
-            name: 'Shenzhen GLOBAL DESIGN AWARD 2018',
-            date: '4.20-30',
+            name: '“顶楼”',
+            annotation: '众星云集，无与伦比，数理化，生',
             assetName: 'steve-johnson.jpeg',
             offset: pageOffset,
           ),
           SlidingCard(
-            name: 'Dawan District, Guangdong Hong Kong and Macao',
-            date: '4.28-31',
+            name: '亚健康生活部',
+            annotation: '楼长室长大家，还有夜奔',
             assetName: 'rodion-kutsaev.jpeg',
             offset: pageOffset - 1,
           ),
           SlidingCard(
-            name: 'Preparing the initial design aspects for 31，中文混合',
-            date: '4.30-31',
+            name: '米娜桑',
+            annotation: '2012.06.08 - Present',
             assetName: 'efe-kurnaz.jpg',
             offset: pageOffset - 2,
           ),
           SlidingCard(
-            name: 'X: 致孩子们',
-            date: '4.20-30',
+            name: '过去现在将来，和墙',
+            annotation: '一个不愿意透露姓名的王家庄人',
             assetName: 'steve-johnson.jpeg',
             offset: pageOffset - 3,
           ),
@@ -70,14 +70,14 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
 
 class SlidingCard extends StatelessWidget {
   final String name;
-  final String date;
+  final String annotation;
   final String assetName;
   final double offset;
 
   const SlidingCard({
     Key? key,
     required this.name,
-    required this.date,
+    required this.annotation,
     required this.assetName,
     required this.offset,
   }) : super(key: key);
@@ -106,7 +106,7 @@ class SlidingCard extends StatelessWidget {
             Expanded(
               child: CardContent(
                 name: name,
-                date: date,
+                date: annotation,
                 offset: gauss,
               ),
             ),
@@ -169,11 +169,11 @@ class CardContent extends StatelessWidget {
                   style: style,
                   child: Transform.translate(
                     offset: Offset(6 * offset, 0),
-                    child: Text('Reserve'),
+                    child: Text('一个按键'),
                   ),
                   onPressed: () {
                     // Go inside the photos or home letters
-                    if (!this.name.startsWith("X")) {
+                    if (!this.name.startsWith("过")) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(

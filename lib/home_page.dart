@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: [
                       Text(
-                        '家书',
+                        '好久不见',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
