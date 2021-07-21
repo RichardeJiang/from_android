@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:from_android/appbar_view.dart';
 
 import 'database.dart';
 
@@ -8,13 +9,7 @@ class GroupChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          '家书：',
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-      ),
+      appBar: CustomizedAppBar(),
       body: ChatScreen(),
     );
   }

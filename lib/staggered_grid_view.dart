@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:from_android/appbar_view.dart';
 
 class StaggeredView extends StatelessWidget {
   final String imageListFileName;
@@ -26,9 +27,7 @@ class StaggeredView extends StatelessWidget {
         if (snapshot.hasData) {
           final int numOfEntries = snapshot.data!.length;
           return Scaffold(
-            appBar: AppBar(
-              title: const Text('testing grid view'),
-            ),
+            appBar: CustomizedAppBar(),
             body: StaggeredGridView.count(
               primary: false,
               crossAxisCount: 4,

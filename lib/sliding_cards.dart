@@ -58,7 +58,7 @@ class _SlidingCardsViewState extends State<SlidingCardsView> {
           ),
           SlidingCard(
             name: '过去现在将来，和墙',
-            annotation: '一个不愿意透露姓名的王家庄人',
+            annotation: '某个不愿意轻易透露姓名的王家庄人',
             assetName: 'steve-johnson.jpeg',
             offset: pageOffset - 3,
           ),
@@ -169,7 +169,13 @@ class CardContent extends StatelessWidget {
                   style: style,
                   child: Transform.translate(
                     offset: Offset(6 * offset, 0),
-                    child: Text('一个按键'),
+                    child: (() {
+                      if (!this.name.startsWith("过")) {
+                        return Text('一个按键');
+                      } else {
+                        return Text('又一个按键');
+                      }
+                    }())
                   ),
                   onPressed: () {
                     // Go inside the photos or home letters
@@ -192,16 +198,16 @@ class CardContent extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Transform.translate(
-                offset: Offset(16 * offset, 0),
-                child: Text(
-                  '0.00 \$',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-              ),
+              // Transform.translate(
+              //   offset: Offset(16 * offset, 0),
+              //   child: Text(
+              //     '0.00 \$',
+              //     style: TextStyle(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 20,
+              //     ),
+              //   ),
+              // ),
               SizedBox(width: 16),
             ],
           )
