@@ -48,6 +48,15 @@ dev_dependencies:
 
   timeline_tile: ^2.0.0
 
+  flutter_launcher_icons: "^0.9.0"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/AppIcon.png"
+  adaptive_icon_background: "#f1eeef"
+  adaptive_icon_foreground: "assets/icon/AppIconCenter.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
