@@ -1,11 +1,8 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:from_android/exhibition_bottom_sheet.dart';
 import 'package:from_android/mail_view.dart';
-import 'package:from_android/scrollable_exhibition_bottom_sheet.dart';
 import 'package:from_android/sliding_cards.dart';
 import 'package:from_android/tabs.dart';
 import 'package:flutter/material.dart';
-import 'exhibition_bottom_sheet.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
@@ -31,11 +28,11 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                SizedBox(height: 8),
-                Header(),
-                SizedBox(height: 40),
-                Tabs(),
-                SizedBox(height: 8),
+                SizedBox(height: 22),
+                IconHeader(),
+                SizedBox(height: 35),
+                //Tabs(),
+                //SizedBox(height: 8),
                 SlidingCardsView(),
               ],
             ),
@@ -113,6 +110,31 @@ class Header extends StatelessWidget {
           fontWeight: FontWeight.w600,
         ),
       ),
+    );
+  }
+}
+
+class IconHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(width: 10),
+        Image.asset(
+          'assets/icon/entry.png',
+          height: 70,
+        ),
+        Align(
+          alignment: FractionalOffset.bottomCenter,
+          child: Text(
+            '周年快乐',
+            style: TextStyle(
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

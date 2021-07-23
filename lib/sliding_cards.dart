@@ -4,7 +4,6 @@ import 'dart:math' as math;
 
 import 'package:from_android/staggered_grid_view.dart';
 
-import 'chat_view.dart';
 import 'group_chat_view.dart';
 
 class SlidingCardsView extends StatefulWidget {

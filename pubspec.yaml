@@ -80,6 +80,8 @@ flutter:
     - assets/config/fly.json
     - assets/config/life.json
     - assets/text/home_letter.json
+    - assets/icon/appbar.png
+    - assets/icon/entry.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
