@@ -1,8 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:from_android/appbar_view.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
-import 'database.dart';
+import 'backend.dart';
 
 class GroupChat extends StatelessWidget {
 
@@ -20,9 +20,9 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-        stream: Database.readAllMails(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+    return FutureBuilder<List<ParseObject>>(
+        future: Backend.readAllMails(),
+        builder: (context, snapshot) {
           if (snapshot.hasError) {
             return Text('Something went wrong');
           } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -34,21 +34,22 @@ class ChatScreen extends StatelessWidget {
               ),
             );
           }
-          return new ListView(
-            children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic> data = document.data() as Map<String,
-                  dynamic>;
-              String name = data['name'];
-              String mail = data['message'];
-              return buildItem(name, mail, "", context);
-            }).toList(),
+          return ListView.builder(
             padding: EdgeInsets.all(10.0),
             physics: BouncingScrollPhysics(
                 parent: AlwaysScrollableScrollPhysics()
             ),
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              final data = snapshot.data![index];
+              final String name = data.get<String>('name')!;
+              final String mail = data.get<String>('message')!;
+
+              return buildItem(name, mail, "", context);
+            }
           );
         }
-        );
+    );
   }
 
   Widget buildItem(

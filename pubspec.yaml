@@ -42,6 +42,9 @@ dependencies:
   #cloud_firestore: ^0.12.9+5
   cloud_firestore: ^2.3.0
 
+  # Dependency for Back4App connection
+  parse_server_sdk_flutter: ^3.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

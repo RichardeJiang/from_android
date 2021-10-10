@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:from_android/appbar_view.dart';
-import 'package:from_android/database.dart';
+
+import 'package:from_android/backend.dart';
 
 class Mail extends StatefulWidget {
 
@@ -71,7 +72,7 @@ class _MailState extends State<Mail> {
               ),
               IconButton(
                 onPressed: () async {
-                  await Database.addNewMail(
+                  await Backend.addNewMail(
                     mailSender: mailSenderController.text,
                     mailContent: mailContentController.text);
                   Navigator.pop(context);

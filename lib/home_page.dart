@@ -1,10 +1,10 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:from_android/mail_view.dart';
+import 'package:from_android/secret_constants.dart';
 import 'package:from_android/sliding_cards.dart';
-import 'package:from_android/tabs.dart';
 import 'package:flutter/material.dart';
 
-import 'package:firebase_core/firebase_core.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,10 +12,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Future<FirebaseApp> _initializeFirebase() async {
-    FirebaseApp firebaseApp = await Firebase.initializeApp();
+  Future<Parse> _initializeBack4App() async {
+    Parse back4App = await Parse().initialize(
+        SecretConstant.BACK_FOUR_APP_APP_ID,
+        SecretConstant.BACK_FOUR_APP_KEY_PARSE_SERVER_URL,
+        clientKey: SecretConstant.BACK_FOUR_APP_CLIENT_KEY,
+        debug: true);
 
-    return firebaseApp;
+    return back4App;
   }
 
   @override
@@ -69,10 +73,10 @@ class _HomePageState extends State<HomePage> {
                       SizedBox(width: 20),
                       Spacer(),
                       FutureBuilder(
-                        future: _initializeFirebase(),
+                        future: _initializeBack4App(),
                         builder: (context, snapshot) {
                           if (snapshot.hasError) {
-                            return Text("ERROR CONNECTING TO FIREBASE");
+                            return Text("ERROR CONNECTING TO BACK4APP");
                           } else if (snapshot.connectionState
                               == ConnectionState.done) {
                             return Icon(
