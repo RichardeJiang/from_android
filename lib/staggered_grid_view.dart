@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:from_android/appbar_view.dart';
+import 'package:parse_server_sdk_flutter/parse_server_sdk.dart';
+
+import 'backend.dart';
 
 class StaggeredView extends StatelessWidget {
   final String imageListFileName;
@@ -22,8 +25,9 @@ class StaggeredView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: loadJson(),
-      builder: (context, AsyncSnapshot<Map> snapshot) {
+      //future: loadJson(),
+      future: Backend.getGalleryList("life"),
+      builder: (context, AsyncSnapshot<List<ParseObject>> snapshot) {
         if (snapshot.hasData) {
           final int numOfEntries = snapshot.data!.length;
           return Scaffold(
@@ -32,22 +36,33 @@ class StaggeredView extends StatelessWidget {
               primary: false,
               crossAxisCount: 4,
               staggeredTiles: <StaggeredTile>[
-                for (int i = 1; i <= numOfEntries; i++)
-                  StaggeredTile.fit(snapshot.data![i.toString()]["width"])
+                for (int i = 0; i < numOfEntries; i++)
+                  StaggeredTile.fit(snapshot.data![i].get<int>('width')!)
               ],
               children: <Widget>[
-                for (int i = 1; i <= numOfEntries; i++)
+                for (int i = 0; i < numOfEntries; i++)
                   _Tile(
-                      snapshot.data![i.toString()]["source"],
+                      snapshot.data![i].get<ParseFileBase>("source")!.url!,
                       i,
-                      snapshot.data![i.toString()]["annotation"])
+                      snapshot.data![i].get<String>("annotation")!)
               ],
               physics: BouncingScrollPhysics(),
               shrinkWrap: true,
             ),
           );
         } else {
-          return CircularProgressIndicator();
+          return Scaffold(
+            appBar: CustomizedAppBar(),
+            body: Center(
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: CircularProgressIndicator(
+                      backgroundColor: Colors.white,
+                      color: Color(0xFF162A49)
+                  )
+            ))
+          );
         }
       }
     );
